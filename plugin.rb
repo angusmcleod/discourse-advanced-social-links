@@ -9,7 +9,7 @@ after_initialize do
     def crawlable_meta_data(opts = nil)
       opts ||= {}
       opts[:url] ||= "#{Discourse.base_url_no_prefix}#{request.fullpath}"
-      opts[:image] = "https://api.imageee.com/article?title=#{opts[:title].gsub(/\s/,'+')}&url=https://forum.coworking.org&desc=&img=https://forum.coworking.org/uploads/default/original/1X/fccd838d5edd0dd7bfd5bc2e5b061c2b3343a24c.png&bg_color=0076A9"
+      opts[:image] = "https://api.imageee.com/article?title=#{URI.encode(opts[:title])}&url=https://forum.coworking.org&desc=&img=https://forum.coworking.org/uploads/default/original/1X/fccd838d5edd0dd7bfd5bc2e5b061c2b3343a24c.png&bg_color=0076A9"
 
       result = []
       result << tag(:meta, property: 'og:site_name', content: SiteSetting.title)
